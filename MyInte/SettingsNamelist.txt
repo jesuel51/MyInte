@@ -1,0 +1,94 @@
+ &PHYSICS
+ ncyclemax = 6
+ irun = 4*1
+ Trelax = 0.05
+ ohmtol = -80000.0 80000.0
+ iabstorque = 0
+ numit4noohmic = 1 15
+ fNBEC = 1.0
+ irfshw = 1
+ ibackw0 = 1
+ p_tgyro = 12
+ lmtexch = 0.0 4.0
+ imergeDT = 1
+ ievoHe = 0
+ idistributeion = 1
+ ForDenFrac = 0.05 2.0 18.0
+ DenFrac = 2*0.373529411765 0.1 0.00294117647059
+ MassForMerge = 2.5 4.0 40.0
+ ChargeForMerge = 1 2 18
+ beamsrcscale = 1.0
+ beamtorqscale = 1.0
+ ibccond = 0
+ iEstimateEr = 0
+ iEvolChan=1 1 0 1
+ itEr = 0 6
+ delta_loc = 0.16
+ gamma_loc = 30
+ QFlag = 1
+ ECeffFct = 250.0
+ tgyroswitch = 3*1 0
+ rho_ped = 0.94
+ reconsImp='tglf,'neo'
+ FracImp=1.e-9
+ iArRepW = 1
+ iusehybridq=0 0.3 0.5 4
+ iaddptcsrc=0 0.7 0.02 0.1 3
+ /
+ &PLOTS
+ iview = 3
+ dirpre = '~/MyInte/scan/'
+ ncmp = 4
+ p_tgyro = 12
+ ipltcmp = 0
+ isemiplt = 1
+ iplotEr = 1
+ outrho = 0.8
+ iplotErr = 1
+ ipltspectrum = [5]
+ indexrho = 3 4 5 6 7 8 9 10 11 12
+ IonSp = 'DT' 'He' 'Ar'
+ ipltpflux = 0
+ ky_care = 0.4
+ /
+ &SETUP
+ tglf_flag = 'nonlin'
+ jobquene = 'batch'
+ nodes = 2
+ ncore = 24
+ workDir = 
+ executable = 
+ kyarr = 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.33497689 1.78216331 
+ 2.37914684 3.17610606 4.24002821 5.6603397 7.55642271 10.08764973 13.46677931 
+ 17.97783923 24.0
+ /
+ &EXPERIMENT
+ shot = 
+ time = 
+ device = 
+ shots = 
+ times = 
+ runid = 
+ run_tag = 
+ /
+ &REMOTE_SETUP
+ workDir = '/scratch/xiangjian/OMFIT/runs/MyInte/Energy700'
+ server = ''
+ tunnel = ''
+ serverPicker = 'venus'
+ /
+ &MODULE
+ ID = 'MyInte'
+ edited_by = 'xiangjian'
+ date = '03/05/2015 10:35'
+ version = u''
+ /
+ &DEPENDENCIES
+ /
+ &extpath
+ tgyro = ''
+ onetwo = ''
+ jobgyrofile = '/scratch/xiangjian/OMFIT-source/modules/MyInte/MyInte/INPUTS/GYROInput/subjob'
+ /
+ &TEMP
+ /

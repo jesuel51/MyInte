@@ -1,0 +1,77 @@
+#-*-Python-*-
+# Created by xiangjian at 2015/05/04 21:32
+k=root['SETTINGS']['PLOTS']['iview']
+tgyro_max=root['INPUTS']['TGYROInput']['input.tgyro']['TGYRO_RMAX']
+p_tgyro=root['SETTINGS']['PHYSICS']['p_tgyro']
+iplotEr=root['SETTINGS']['PLOTS']['iplotEr']
+p_tgyro=root['SETTINGS']['PLOTS']['p_tgyro']
+#profile=root['OUTPUTSRec']['TGYROOutput']['profile'][int(k)]['data']
+profile=root['OUTPUTSRec']['TGYROOutput'][int(k)]['out.tgyro.profile']['data']
+profile=map(list,zip(*profile))
+#profile2=root['OUTPUTSRec']['TGYROOutput'][int(k)]['out.tgyro.profile2']['data']
+#profile2=map(list,zip(*profile2))
+#profile3=root['OUTPUTSRec']['TGYROOutput'][int(k)]['out.tgyro.profile3']['data']
+#profile3=map(list,zip(*profile3))
+if iplotEr==1:
+    geometry=root['OUTPUTSRec']['TGYROOutput'][int(k)]['out.tgyro.geometry.1']['data']
+    geometry=map(list,zip(*geometry))
+    gyrobohm=root['OUTPUTS']['TGYROOutput']['out.tgyro.gyrobohm']['data'];
+    gyrobohm=map(list,zip(*gyrobohm))
+    geometry1=root['OUTPUTS']['TGYROOutput']['out.tgyro.geometry.1']['data'];
+    geometry1=map(list,zip(*geometry1))
+ni1=profile[1]
+#ni2=profile2[1]
+#ni3=profile3[1]
+ne=profile[2]
+Ti=profile[3]
+Te=profile[4]
+Mach=array(profile[8])
+if iplotEr==1:
+    rho=geometry[1]
+    # rotation date
+    gcs=gyrobohm[5][0:p_tgyro+1];	#get the cs data
+    gcs=[float(x) for x in gcs]
+    rmaj=array([x*1.6 for x in geometry1[9]]);
+    w0_t=Mach*gcs/rmaj;
+else:
+    rho=linspace(0,tgyro_max,p_tgyro+1)
+    w0_t=Mach
+iplot=1
+if iplot==1:
+#    plt.close()
+    figure(211)
+    subplot(2,2,1)
+    plot(rho,Ti,'-bo',linewidth=2)
+    print('avgTi=',sum(Ti)/len(Ti))
+    #xlabel('$rho$')
+    ylabel('$Ti-keV$')
+    subplot(2,2,2)
+    plot(rho,Te,'-bo',linewidth=2)
+    print('avgTe=',sum(Te)/len(Te))
+    #xlabel('$rho$')
+    ylabel('$Te-keV$')
+    subplot(2,2,3)
+    if iplotEr==1:
+        plot(rho,w0_t/1.e3,'-bo',linewidth=2)
+        ylabel('$omega-krads^{-1}$')
+    else:
+        plot(rho,Mach,'-bo',linewidth=2)
+        ylabel('$rotation-Mach$')
+    xlabel('$rho$')
+    subplot(2,2,4)
+    plot(rho,ne,'-bo',linewidth=2,label='e')
+    print('avgTi=',sum(ne)/len(ne))
+    #plot(rho,ni1,'-ro',linewidth=2,label='D')
+    #plot(rho,ni2,'-b*',linewidth=2,label='T')
+    #plot(rho,[x*10 for x in ni3],'-r*',linewidth=2,label='10*He')
+    legend(loc=0).draggable(True)
+    xlabel('$rho$')
+    ylabel('$density-cm^{-3}$')
+
+# store the date
+root['SETTINGS']['TEMP'][k]=OMFITtree()
+root['SETTINGS']['TEMP'][k]['Ti']=Ti
+root['SETTINGS']['TEMP'][k]['Te']=Te
+root['SETTINGS']['TEMP'][k]['omega0']=w0_t/1.e3
+root['SETTINGS']['TEMP'][k]['ne']=ne
+root['SETTINGS']['TEMP'][k]['rho']=rho

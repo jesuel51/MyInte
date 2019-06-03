@@ -1,0 +1,6 @@
+tgyroswitch=root['SETTINGS']['PHYSICS']['tgyroswitch']
+#root['INPUTS']['TGYROInput']['input.tgyro']['LOC_NE_FEEDBACK_FLAG']=tgyroswitch[0]
+root['INPUTS']['TGYROInput']['input.tgyro']['TGYRO_DEN_METHOD0']=tgyroswitch[0]
+root['INPUTS']['TGYROInput']['input.tgyro']['LOC_TE_FEEDBACK_FLAG']=tgyroswitch[1]
+root['INPUTS']['TGYROInput']['input.tgyro']['LOC_TI_FEEDBACK_FLAG']=tgyroswitch[2]
+root['INPUTS']['TGYROInput']['input.tgyro']['LOC_ER_FEEDBACK_FLAG']=tgyroswitch[3]

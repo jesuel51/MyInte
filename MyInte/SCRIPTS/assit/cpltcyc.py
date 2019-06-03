@@ -1,0 +1,302 @@
+# this script is used to complete the cycle between tgyro and onetwo
+# the basic role here is:
+# (1)  interp the data from TGYRO to ONETWO;
+import numpy as np
+import string
+p_tgyro=root['SETTINGS']['PLOTS']['p_tgyro']
+Trelax=root['SETTINGS']['PHYSICS']['Trelax']
+#ismoothpivot=root['SETTINGS']['PHYSICS']['ismoothpivot']
+ismoothpivot=2
+iEr=root['INPUTS']['TGYROInput']['input.tgyro']['LOC_ER_FEEDBACK_FLAG'];
+# we note that if one would like to evolve the impurities species, he may also evolve the electron density, which otherwise is nonsense
+# one can choose to evolve electron density only but not evolve impurities species
+#iNe=root['INPUTS']['TGYROInput']['input.tgyro']['LOC_NE_FEEDBACK_FLAG'];
+iNe=root['INPUTS']['TGYROInput']['input.tgyro']['TGYRO_DEN_METHOD0'];
+# first ,get the profiles from TGYRO
+#profile=root['OUTPUTS']['TGYROOutput']['out.tgyro.profile']['data'];
+#profile2=root['OUTPUTS']['TGYROOutput']['out.tgyro.profile2']['data'];  # helium profile should be here
+#geometry1=root['OUTPUTS']['TGYROOutput']['out.tgyro.geometry.1']['data'];
+#gyrobohm=root['OUTPUTS']['TGYROOutput']['out.tgyro.gyrobohm']['data'];
+#flux=root['OUTPUTS']['TGYROOutput']['out.tgyro.flux_target']['data'];
+#grad=root['OUTPUTS']['TGYROOutput']['out.tgyro.gradient']['data'];
+#profile=array(map(list,zip(*profile)))
+#profile2=array(map(list,zip(*profile2)))
+#geometry1=array(map(list,zip(*geometry1)))
+#gyrobohm=array(map(list,zip(*gyrobohm)))
+#grad=array(map(list,zip(*grad)))
+# define a function to read all the output profile of the newest tgyro(after 2019)
+def readouttgyro(filename):
+# return all the numerisim data in a format of [numrho*niter, ncol]
+    f=open(filename,'Ur')
+    fread=f.readlines()
+    lis=[]
+    for line in fread:
+        lintemp=line.split()
+        try:
+            temp=float(lintemp[0])
+            lis.append(line)
+        except:
+            continue
+# turn the list to array so that it can be easily handled
+    row=len(lis)
+    col=len(lis[0].split())
+    arr=zeros([row,col])
+    for k in arange(row):
+        arr[k]=[float(item) for item in lis[k].split()]
+    arr=arr.T
+    return arr
+    f.close()
+inputtgyro=root['INPUTS']['TGYROInput']['input.tgyro']
+tgyro_max=inputtgyro['TGYRO_RMAX']
+ptgyro=len(inputtgyro['DIR'])
+outtgyro=root['OUTPUTS']['TGYROOutput']
+# r/a, beta_unit, a*beta_*, a*gamma_p/cs, a*gamma_e/cs, a*f_rot, Mach
+arr_profile=readouttgyro(outtgyro['out.tgyro.profile'].filename)
+# r/a, ne, a/Lne,te,a/LTe,betae
+arr_profile_e=readouttgyro(outtgyro['out.tgyro.profile_e'].filename)
+# r/a, ne, a/Lni1, ti1, a/LTi1, betai1
+arr_profile_i1=readouttgyro(outtgyro['out.tgyro.profile_i1'].filename)
+arr_profile_i2=readouttgyro(outtgyro['out.tgyro.profile_i2'].filename)
+# r/a, rho, q, s, kappa, s_kappa, delta, s_delta, shift, rmaj/a, b_unit
+arr_geometry1=readouttgyro(outtgyro['out.tgyro.geometry.1'].filename)
+# r/a , Chi_GB,Q _GB, Gamma_GB, Pi_GB, S_GB, c_s
+arr_gyrobohm=readouttgyro(outtgyro['out.tgyro.gyrobohm'].filename)
+# get the profiles(simculated and expinal)
+# simculated 
+ne_t=arr_profile_e[1][-ptgyro-1:]
+gradne=arr_profile_e[2][-ptgyro-1:]
+Te_t=arr_profile_e[3][-ptgyro-1:]
+gradTe=arr_profile_e[4][-ptgyro-1:]
+#ni_sim=arr_profile_i1[1][-ptgyro-1:]
+#aLni_sim=arr_profile_i1[2][-ptgyro-1:]
+nhe_t=arr_profile_i2[1][-ptgyro-1:]
+Ti_t=arr_profile_i1[3][-ptgyro-1:]
+gradTi=arr_profile_i1[4][-ptgyro-1:]
+# rotation
+Mach_sim=arr_profile[6][-ptgyro-1:]
+a=root['INPUTS']['TGYROInput']['input.profiles']['rmin'][-1]
+r_t=arr_geometry1[1][-ptgyro-1:]
+gcs_sim=arr_gyrobohm[6][-ptgyro-1:]
+rmaj=a*arr_geometry1[9][-ptgyro-1:]
+w0_t=Mach_sim*gcs_sim/rmaj
+gradw0=arr_profile[3][-ptgyro-1:]
+##   get profile date from tgyro output
+#ne_t=profile[2];	  # electron density
+#Ti_t=profile[3];
+#Te_t=profile[4];
+#nhe_t=profile2[1]         # helium density profile
+#gradne=grad[2][-p_tgyro-1:]
+#gradne=[string.atof(item) for item in gradne]
+#gradTi=grad[3][-p_tgyro-1:]
+#gradTi=[string.atof(item) for item in gradTi]
+#gradTe=grad[4][-p_tgyro-1:]
+#gradTe=[string.atof(item) for item in gradTe]
+## on flat the core region
+# the rmin set in tgyro will be ~0.2, the core profile will be flatten automatically, thus there is not need to flatten it manually here
+#root['SETTINGS']['PHYSICS']['TIIN_TGYRO']=Ti_t
+#root['SETTINGS']['PHYSICS']['TEIN_TGYRO']=Te_t
+#root['SCRIPTS']['assit']['useiniT2.py'].run()
+#Ti_t=root['SETTINGS']['PHYSICS']['TIIN_TGYRO']
+#Te_t=root['SETTINGS']['PHYSICS']['TEIN_TGYRO']
+#root['SETTINGS']['PHYSICS']['Ne_TGYRO']=ne_t
+#root['SCRIPTS']['assit']['useiniNe.py'].run()
+#ne_t=root['SETTINGS']['PHYSICS']['Ne_TGYRO']
+#w0 = sim.data['M=wR/cs']*(100*sim.data['c_s'])/(a*sim.data['rmaj/a'])
+#w0_t=profile[8];
+#gcs=gyrobohm[5][0:p_tgyro+1];	#get the cs data
+#gcs=[float(x) for x in gcs];
+#rmaj=geometry1[9];
+#rmaj=[x*1.6 for x in geometry1[9]]
+#ra=root['INPUTS']['TGYROInput']['input.profiles']['rmin'][-1]
+#rmaj=[x*ra for x in geometry1[9]]
+#w0_t=w0_t*gcs/rmaj;    
+#inormEr=root['SETTINGS']['PHYSICS']['inormEr']
+#if inormEr==0:
+#    w0_t=w0_t*gcs/rmaj;
+#    root['SETTINGS']['PHYSICS']['Er_TGYRO']=w0_t
+##    root['SCRIPTS']['assit']['useiniEr.py'].run()
+#    w0_t=root['SETTINGS']['PHYSICS']['Er_TGYRO']
+#else:
+#    root['SETTINGS']['PHYSICS']['Er_TGYRO']=w0_t
+##    root['SCRIPTS']['assit']['useiniEr.py'].run()
+#    w0_t=root['SETTINGS']['PHYSICS']['Er_TGYRO']
+#    w0_t=w0_t*gcs/rmaj;    
+#    w0_t=w0_t*gcs/rmaj;    
+ne_old=root['INPUTS']['ONETWOInput']['inone']['namelis1']['ENEIN']
+nhe_old=root['INPUTS']['ONETWOInput']['inone']['namelis1']['eni'].T[0]  # so note here the helium profile should be well kept in the inone file in the eni(1,1)
+Te_old=root['INPUTS']['ONETWOInput']['inone']['namelis1']['TEIN']
+Ti_old=root['INPUTS']['ONETWOInput']['inone']['namelis1']['TIIN']
+w0_old=root['INPUTS']['TGYROInput']['input.profiles']['omega0']
+##  find the rho_pivot and r_pivot
+rho_pivot=root['INPUTS']['TGYROInput']['input.tgyro']['TGYRO_RMAX']
+rho_ped=root['SETTINGS']['PHYSICS']['rho_ped']
+np_tgyro=len(ne_t)
+#r_12=root['INPUTS']['ONETWOInput']['inone_ss']['namelis1']['rtiin']
+#nj=root['SETTINGS']['PHYSICS']['nj']
+nj=root['INPUTS']['ONETWOInput']['inone']['NAMELIS1']['NJENE']
+r_12=linspace(0,1,nj)
+#r_t=linspace(0,rho_pivot,np_tgyro);	# denotes r_tgyro here
+#r_t=geometry1[1]
+#####
+num_rho=len(r_12)
+num_r=floor(rho_pivot*(nj-1))
+num_r_ne=floor(rho_ped*(nj-1))
+ne_12_ped=interp(rho_ped,r_12,ne_old)
+nhe_12_ped=interp(rho_ped,r_12,nhe_old)
+Te_12_ped=interp(rho_ped,r_12,Te_old)
+Ti_12_ped=interp(rho_ped,r_12,Ti_old)
+#  the linear interpolation from pivot to rho_ped 
+if root['SETTINGS']['PHYSICS']['ibccond']==1:
+    #if the algorithm is used, only the third method for smoothing the pivot can be used
+    ismoothpivot=3
+    ncount=0
+    dTn=1.
+    Tipvt_old=Ti_t[-1]
+    Tepvt_old=Te_t[-1]
+    nepvt_old=ne_t[-1]    
+    while(dTn>1.e-3 and ncount<100):
+	ncount=ncount+1
+	print(ncount)
+        deltarho=rho_ped-rho_pivot
+	deltaTi=deltarho*Tipvt_old*gradTi[-1]
+	deltaTe=deltarho*Tepvt_old*gradTe[-1]
+	deltane=deltarho*nepvt_old*gradne[-1]
+	Tipvt_new=Ti_12_ped+deltaTi
+	Tepvt_new=Te_12_ped+deltaTe
+	nepvt_new=ne_12_ped+deltane
+	diffTi=abs(Tipvt_new-Tipvt_old)/Tipvt_old
+	diffTe=abs(Tepvt_new-Tepvt_old)/Tepvt_old
+	diffne=abs(nepvt_new-nepvt_old)/nepvt_old
+	dTn=(diffTe+diffTi+diffne)/3.
+	Tipvt_old=Tipvt_new
+	Tepvt_old=Tepvt_new
+	nepvt_old=nepvt_new
+	print(dTn)
+    diffTi2=Ti_t[-1]-Tipvt_new
+    diffTe2=Te_t[-1]-Tepvt_new
+    diffne2=ne_t[-1]-nepvt_new
+    Ti_t=Ti_t-diffTi2
+    Te_t=Te_t-diffTe2
+    ne_t=ne_t-diffne2
+#many times , the pivot of tgyro is not consistent with 12
+ne_12_pivot=interp(rho_pivot,r_12,ne_old)
+diffne_pivot=ne_t[-1]-ne_12_pivot;
+ne_t=ne_t-diffne_pivot
+if ismoothpivot==1:
+    n_add=[floor(float(nj-1)/np_tgyro*0.1)+num_r,floor(float(nj-1)/np_tgyro*0.2)+num_r]
+    r_t_add=r_12[n_add]
+    Te_t_add=Te_old[n_add]
+    Ti_t_add=Ti_old[n_add]
+    ne_t_add=ne_old[n_add]
+    w0_t_add=w0_old[n_add]
+    r_t=concatenate((r_t,r_t_add))
+    Te_t=concatenate((Te_t,Te_t_add))
+    Ti_t=concatenate((Ti_t,Ti_t_add))
+    ne_t=concatenate((ne_t,ne_t_add))
+    w0_t=concatenate((w0_t,w0_t_add))
+elif ismoothpivot==2:
+    ENEIN=root['SETTINGS']['PHYSICS']['ENEIN']# the electron density profile from pivot to pedestal
+    rho_sparse=root['SETTINGS']['PHYSICS']['rho_sparse']
+    #n_add=array([floor(float(nj-1)/np_tgyro*0.25)+num_r,floor(float(nj-1)/np_tgyro*0.5)+num_r])
+    n_add=[floor(float(nj-1)/np_tgyro*0.1)+num_r,floor(float(nj-1)/np_tgyro*0.2)+num_r]
+    r_t_add=r_12[n_add]
+    r_t_add_ne=rho_sparse[0:]
+    nhe_t_add=nhe_old[n_add]
+    Te_t_add=Te_old[n_add]
+    Ti_t_add=Ti_old[n_add]
+    #ne_t_add=ne_old[n_add]
+    ne_t_add=ENEIN[0:]
+    w0_t_add=w0_old[n_add]
+    r_t_ne=concatenate((r_t[0:-1],r_t_add_ne))
+    r_t=concatenate((r_t,r_t_add))
+    nhe_t=concatenate((nhe_t,nhe_t_add))
+    Te_t=concatenate((Te_t,Te_t_add))
+    Ti_t=concatenate((Ti_t,Ti_t_add))
+    ne_t=concatenate((ne_t[0:-1],ne_t_add))
+    w0_t=concatenate((w0_t,w0_t_add))
+elif ismoothpivot==3:
+    ENEIN=array([ne_t[-1],ne_12_ped])
+    TIIN=array([Ti_t[-1],Ti_12_ped])
+    TEIN=array([Te_t[-1],Te_12_ped])
+    rho_sparse=array([rho_pivot,rho_ped])
+    #n_add=array([floor(float(nj-1)/np_tgyro*0.25)+num_r,floor(float(nj-1)/np_tgyro*0.5)+num_r])
+    n_add=[floor(float(nj-1)/np_tgyro*0.1)+num_r,floor(float(nj-1)/np_tgyro*0.2)+num_r]
+    r_t_add=r_12[n_add]
+    r_t_add_ne=rho_sparse
+    Te_t_add=TEIN
+    Ti_t_add=TIIN
+    ne_t_add=ENEIN
+    w0_t_add=w0_old[n_add]
+    r_t_ne=concatenate((r_t[0:-1],r_t_add_ne))
+    r_t=concatenate((r_t,r_t_add))
+    Te_t=concatenate((Te_t[0:-1],Te_t_add))
+    Ti_t=concatenate((Ti_t[0:-1],Ti_t_add))
+    ne_t=concatenate((ne_t[0:-1],ne_t_add))
+    w0_t=concatenate((w0_t,w0_t_add))
+nhe_new=ones(num_rho)
+Te_new=ones(num_rho)
+Ti_new=ones(num_rho)
+ne_new=ones(num_rho)
+#   update the n & T profile as input to ONETWO
+#Te_new[0:(num_r-1)]=np.interp(r_12[0:(num_r-1)],r_t,Te_t)
+#Ti_new[0:(num_r-1)]=np.interp(r_12[0:(num_r-1)],r_t,Ti_t)
+#ne_new[0:(num_r-1)]=np.interp(r_12[0:(num_r-1)],r_t,ne_t)
+numorder=3
+if ismoothpivot==1:
+    ne_new[0:(num_r-2)]=spline(r_t[0:-2],ne_t[0:-2],r_12[0:(num_r-2)],numorder)
+    ne_new[num_r-2:num_rho]=ne_old[num_r-2:num_rho]
+    Te_new[0:(num_r-1)]=spline(r_t,Te_t,r_12[0:(num_r-1)],numorder)
+    Ti_new[0:(num_r-1)]=spline(r_t,Ti_t,r_12[0:(num_r-1)],numorder)
+    Te_new[num_r-1:num_rho]=Te_old[num_r-1:num_rho]
+    Ti_new[num_r-1:num_rho]=Ti_old[num_r-1:num_rho]
+elif ismoothpivot==2:
+    ne_new[0:(num_r_ne-1)]=spline(r_t_ne,ne_t,r_12[0:(num_r_ne-1)],numorder)
+    ne_new[num_r_ne-1:num_rho]=ne_old[num_r_ne-1:num_rho]
+    nhe_new[0:(num_r-1)]=spline(r_t,nhe_t,r_12[0:(num_r-1)],numorder)
+    Te_new[0:(num_r-1)]=spline(r_t,Te_t,r_12[0:(num_r-1)],numorder)
+    Ti_new[0:(num_r-1)]=spline(r_t,Ti_t,r_12[0:(num_r-1)],numorder)
+    nhe_new[num_r-1:num_rho]=nhe_old[num_r-1:num_rho]
+    Te_new[num_r-1:num_rho]=Te_old[num_r-1:num_rho]
+    Ti_new[num_r-1:num_rho]=Ti_old[num_r-1:num_rho]
+elif ismoothpivot==3:
+    ne_new[0:(num_r_ne)]=spline(r_t_ne,ne_t,r_12[0:(num_r_ne)],numorder)
+    ne_new[num_r_ne:num_rho]=ne_old[num_r_ne:num_rho]
+    Te_new[0:(num_r_ne-1)]=spline(r_t_ne,Te_t,r_12[0:(num_r_ne-1)],numorder)
+    Te_new[num_r_ne-1:num_rho]=Te_old[num_r_ne-1:num_rho]
+    Ti_new[0:(num_r_ne-1)]=spline(r_t_ne,Ti_t,r_12[0:(num_r_ne-1)],numorder)
+    Ti_new[num_r_ne-1:num_rho]=Ti_old[num_r_ne-1:num_rho]
+if iEr==1:
+    w0_new=ones(num_rho)
+    w0_new[0:(num_r-1)]=spline(r_t,w0_t,r_12[0:(num_r-1)],numorder)
+#    w0_new[0:num_r]=spline(r_t,w0_t,r_12[0:num_r])
+    w0_new[num_r-1:num_rho]=w0_old[num_r-1:num_rho]
+#    w0_new[num_r:num_rho]=w0_old[num_r:num_rho]
+    w0_new=w0_new*(1-Trelax)+Trelax*w0_old
+    root['SETTINGS']['PHYSICS']['omega0']=w0_new
+if root['SETTINGS']['PHYSICS']['ibackw0']==1:
+    root['INPUTS']['ONETWOInput']['inone']['NAMELIS1']['ANGROTIN']=sign(root['SETTINGS']['PHYSICS']['omega0'][1])*root['SETTINGS']['PHYSICS']['omega0']
+err_te=norm(Te_new-Te_old);
+err_ti=norm(Ti_new-Ti_old);
+err=(err_te+err_ti)/2.
+#   note that the profiles should be updated to inone file
+root['INPUTS']['ONETWOInput']['inone']['namelis1']['TEIN']=Te_new*(1-Trelax) + Trelax*root['INPUTS']['ONETWOInput']['inone']['namelis1']['TEIN'];
+root['INPUTS']['ONETWOInput']['inone']['namelis1']['TIIN']=Ti_new*(1-Trelax) + Trelax*root['INPUTS']['ONETWOInput']['inone']['namelis1']['TIIN'];
+root['INPUTS']['ONETWOInput']['inone']['namelis1']['ENEIN']=ne_new;
+#root['INPUTS']['ONETWOInput']['inone']['namelis1']['ENI(1,1)']=nhe_new;
+root['SETTINGS']['DEPENDENCIES']['He']=nhe_new;
+# if the density are also evolved, then the ion density are evolved according to the electrons
+if iNe==1:
+#    root['SCRIPTS']['assit']['distributeIonDen.py'].run()
+# we will need a interface between this module and ForW, so that we gonna konw the reconstructed W profile 
+    if root['SETTINGS']['PHYSICS']['reconsImp']!='':
+        root['SCRIPTS']['assit']['recieveWpro.py'].run()
+#   # the density profile of W should be provided in the root['SETTINGS']['DEPENDENCIES']['W']
+#    root['SETTINGS']['TEMP']['ImpName']='W'
+#    root['SETTINGS']['TEMP']['ImpName']='He'
+#    root['SCRIPTS']['assit']['distributeIonDen.py'].run()
+    # used to setup the density profiles
+    root['SCRIPTS']['assit']['distributeIonDen2.py'].run()
+    
+#root['SCRIPTS']['assit']['chwich.py'].run()
+#root['SCRIPTS']['assit']['flatcore.py'].run()
+#root['SCRIPTS']['assit']['useiniT.py'].run()

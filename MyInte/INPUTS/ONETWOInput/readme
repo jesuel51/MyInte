@@ -1,0 +1,3 @@
+gfile_ssy and inone_ssy comes from the path root['MyInte']['INPUTS']['ONETWOInput'] of project
+/scratch/shisy/OMFITdata/ssy_CFETR6.6/0.23sat0/Rmin0.23Mach=0FracImp=1e-11sat=0.zip
+which is the case of CFETR6.6 with alpha_mach = 0 

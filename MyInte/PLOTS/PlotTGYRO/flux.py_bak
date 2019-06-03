@@ -1,0 +1,87 @@
+#-*-Python-*-
+# Created by xiangjian at 2015/05/04 21:32
+#plt.close();
+# define a function to read the out.tgyro.flux_target
+def readfluxtarget(filename):
+    f=open(filename,'Ur')
+    l=[]
+    count=0
+    for line in f:
+        try:
+            case=float(line[0:6])
+            l.append(line)
+        except:
+            count=count+1
+    col=len(l[0].split())
+    row=len(l)
+    ll=zeros([row,col])
+    count=0
+    for item in l:
+        ll[count]=[float(item2) for item2 in item.split()]
+        count=count+1
+    return ll
+    f.close()
+fs1=16;
+fs2=24;
+fs3=22;
+k=root['SETTINGS']['PLOTS']['iview']
+fluxname=root['OUTPUTSRec']['TGYROOutput'][k]['out.tgyro.flux_target'].filename
+#flux=map(list,zip(*flux));
+#p_tgyro=root['SETTINGS']['PLOTS']['p_tgyro']
+inputtgyro = root['INPUTS']['TGYROInput']['input.tgyro']
+p_tgyro = len(inputtgyro['DIR'])
+#flux=zeros([p_tgyro,11])
+ll=readfluxtarget(fluxname)
+flux=ll[-p_tgyro-1:];
+if inputtgyro.has_key('TGYRO_RMIN'):
+    tgyro_rmin=inputtgyro['TGYRO_RMIN']
+    rho=linspace(tgyro_rmin,inputtgyro['TGYRO_RMAX'],p_tgyro)
+    rho=concatenate((array([0]),rho))
+else:
+    tgyro_rmin=0
+    rho=linspace(0,inputtgyro['TGYRO_RMAX'],p_tgyro+1)
+
+figure('Gorybohm Normalized Flux',figsize=[10,8])
+subplot(2,2,1)
+semilogy(rho,flux.T[1],'-*k',linewidth=2,label='match')
+semilogy(rho,flux.T[2],'-or',linewidth=2,label='target')
+legend(loc='lower right',fontsize=fs1).draggable(True)
+#xlabel('$rho$',fontsize=fs2,family='serif')
+ylabel('GyroBohm',fontsize=fs2,family='serif')
+text(0.1,1.e1,'(a) Ion Energy',fontsize=fs3,family='serif')
+ylim([1.e-3,1.e2])
+xticks(fontsize=fs1,family='serif')
+yticks(fontsize=fs1,family='serif')
+subplot(2,2,2)
+semilogy(rho,flux.T[3],'-*k',linewidth=2,label='match')
+semilogy(rho,flux.T[4],'-or',linewidth=2,label='target')
+legend(loc='lower right',fontsize=fs1).draggable(True)
+xticks(fontsize=fs1,family='serif')
+yticks(fontsize=fs1,family='serif')
+ylim([1.e-3,1.e2])
+#xlabel('$rho$',fontsize=fs2,family='serif')
+text(0.1,1.e1,'(b) Electron Energy',fontsize=fs3,family='serif')
+#ylabel('$EFlux_e/GB$',fontsize=fs2,family='serif')
+subplot(2,2,3)
+semilogy(rho,flux.T[5],'-*k',linewidth=2,label='match')
+semilogy(rho,flux.T[6],'-or',linewidth=2,label='target')
+legend(loc='lower right',fontsize=fs1).draggable(True)
+xticks(fontsize=fs1,family='serif')
+yticks(fontsize=fs1,family='serif')
+ylabel('GyroBohm',fontsize=fs2,family='serif')
+ylim([1.e-4,1.e0])
+xlabel('$rho$',fontsize=fs2,family='serif')
+text(0.1,1.e-1,'(c) Particle',fontsize=fs3,family='serif')
+#ylabel('$PFlux_e/GB$',fontsize=fs2,family='serif')
+subplot(2,2,4)
+flux7=flux.T[7]
+flux8=flux.T[8]
+semilogy(rho,[abs(float(item)) for item in flux7],'-*k',linewidth=2,label='match')
+semilogy(rho,[abs(float(item)) for item in flux8],'-or',linewidth=2,label='target')
+legend(loc='lower right',fontsize=fs1).draggable(True)
+xticks(fontsize=fs1,family='serif')
+yticks(fontsize=fs1,family='serif')
+ylim([1.e-3,1.e2])
+xlabel('$rho$',fontsize=fs2,family='serif')
+text(0.1,1.e1,'(d) Momentum',fontsize=fs3,family='serif')
+#ylabel('$MFlux/GB$',fontsize=fs2,family='serif')

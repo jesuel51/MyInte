@@ -1,0 +1,97 @@
+#==============================================
+# Plasma shape/geometry
+#
+RADIAL_PROFILE_METHOD=3
+NUM_EQUIL_FLAG=1
+#DOPPLER_SCALE=0.
+
+RADIUS=0.6
+N_FIELD=1
+#==============================================
+
+#=============================================
+# rotation physics
+#
+DOPPLER_SCALE=0.0
+PGAMMA_SCALE=0.0
+MACH_SCALE=0.0
+#=============================================
+
+#============================================
+# collisionality
+#
+NU_EI_SCALE=1.0
+#=============================================
+
+#==============================================
+# Plasma profiles
+#
+ELECTRON_METHOD=4
+DENSITY_METHOD=2
+
+# including different ion species
+NI_OVER_NE=1.
+MU=0.894427191
+
+NI_OVER_NE_2=1
+MU_2=0.707106781187
+Z_2=2
+
+NI_OVER_NE_3=1
+MU_3=0.2236
+Z_3=18
+
+MU_ELECTRON=60.0
+#==============================================
+
+#==============================================
+# Numerical resolution
+
+TOROIDAL_GRID=8
+BOX_MULTIPLIER=-1.0
+L_Y=0.2
+TOROIDAL_MIN=20
+TOROIDAL_SEP=10
+
+INTEGRATOR_METHOD=2
+TIME_STEP=0.003
+TIME_MAX=-15.01
+TIME_SKIP=20
+
+# radial resolution
+
+RADIAL_GRID=6
+RADIAL_DERIVATIVE_BAND=2
+RADIAL_GYRO_BAND=3
+
+# poloidal resolution
+
+ORBIT_GRID=12
+BLEND_GRID=12
+
+# velocity resolution
+
+PASS_GRID=6
+TRAP_GRID=6
+ENERGY_GRID=8
+ENERGY_MAX=6.0
+#==============================================
+
+#==============================================
+# Control parameters
+#
+BOUNDARY_METHOD=1
+
+AMP_PHI_N=0.0001
+AMP_PHI_0=0.0
+
+THETA_PLOT=24
+
+PLOT_U_FLAG=0
+PLOT_N_FLAG=0
+PLOT_E_FLAG=0
+PLOT_V_FLAG=0
+#==============================================
+
+
+

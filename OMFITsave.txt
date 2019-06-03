@@ -1,0 +1,148 @@
+['MyInte'] <-:-:-> OMFITmodule <-:-:->  <-:-:-> 
+['MyInte']['INPUTS'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['ProfileGenInput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['ProfileGenInput']['cerfile'] <-:-:-> OMFITasciitable <-:-:-> ./MyInte/INPUTS/ProfileGenInput/cer141459.03890 <-:-:-> {}
+['MyInte']['INPUTS']['ProfileGenInput']['statefile'] <-:-:-> OMFITnc <-:-:-> ./MyInte/INPUTS/ProfileGenInput/statefile_1.000000E+06.nc <-:-:-> {}
+['MyInte']['INPUTS']['ProfileGenInput']['gfile'] <-:-:-> OMFITeqdsk <-:-:-> ./MyInte/INPUTS/ProfileGenInput/g000000.00000 <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput']['inone'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/ONETWOInput/inone <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput']['gfile'] <-:-:-> OMFITeqdsk <-:-:-> ./MyInte/INPUTS/ONETWOInput/gfile <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput']['auxiliary'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput']['auxiliary']['toray.in'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/ONETWOInput/auxiliary/toray.in <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput']['auxiliary']['gafit.in'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/ONETWOInput/auxiliary/gafit.in <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput']['auxiliary']['genray.dat'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/ONETWOInput/auxiliary/genray.dat <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput']['auxiliary']['nubeam.dat'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/ONETWOInput/auxiliary/nubeam.dat <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput']['subjob'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['ONETWOInput']['subjob']['monitePBS12.sh'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/ONETWOInput/subjob/monitePBS12.sh <-:-:-> {}
+['MyInte']['INPUTS']['EFITInput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['EFITInput']['rtest'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/EFITInput/rfile_7.2 <-:-:-> {}
+['MyInte']['INPUTS']['EFITInput']['exeEFIT.sh'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/EFITInput/exeEFIT7.2.sh <-:-:-> {}
+['MyInte']['INPUTS']['EFITInput']['g0file'] <-:-:-> OMFITeqdsk <-:-:-> ./MyInte/INPUTS/EFITInput/g0.99999 <-:-:-> {}
+['MyInte']['INPUTS']['GYROInput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['GYROInput']['input.gyro'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/GYROInput/input.gyro <-:-:-> {}
+['MyInte']['INPUTS']['GYROInput']['subjob'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['GYROInput']['subjob']['monitePBSgyro.sh'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/GYROInput/subjob/monitePBSgyro.sh <-:-:-> {}
+['MyInte']['INPUTS']['TGLFInput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['TGLFInput']['jobtglf.pbs'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/TGLFInput/jobtglf.pbs <-:-:-> {}
+['MyInte']['INPUTS']['TGLFInput']['monitePBStglf.sh'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/TGLFInput/monitePBStglf.sh <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['input.tgyro'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/TGYROInput/input.tgyro_p12 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['subjob'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['subjob']['jobtgyro.pbs'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/TGYROInput/subjob/jobtgyro.pbs_p12 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['subjob']['monitePBStgyro.sh'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/TGYROInput/subjob/monitePBStgyro.sh_p12 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['input.profiles'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/TGYROInput/input.profiles <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['input.profiles.geo'] <-:-:-> OMFITgaCode <-:-:-> ./MyInte/INPUTS/TGYROInput/input.profiles.geo <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf1'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf1 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf2'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf2 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf3'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf3 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf4'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf4 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf5'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf5 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf6'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf6 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf7'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf7 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf8'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf8 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf9'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf9 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf10'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf10 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf11'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf11 <-:-:-> {}
+['MyInte']['INPUTS']['TGYROInput']['inputtglf']['input.tglf12'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/INPUTS/TGYROInput/inputtglf/input.tglf12 <-:-:-> {}
+['MyInte']['INPUTSRec'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTSRec']['ONETWO'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTSRec']['EFIT'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTSRec']['ProfileGen'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['INPUTSRec']['TGYRO'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTS'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTS']['TGYROOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTS']['ProfileGenOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTS']['ONETWOOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTS']['EFITOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTS']['GYROOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTS']['TGLFOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTSRec'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTSRec']['TGYROOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTSRec']['ProfileGenOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTSRec']['ONETWOOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTSRec']['EFITOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTSRec']['EFITOutput']['In'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTSRec']['EFITOutput']['Out'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['OUTPUTSRec']['GYROOutput'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS']['RunONETWO'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS']['RunONETWO']['baserun12_v57.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/RunONETWO/baserun12_v57.py <-:-:-> {}
+['MyInte']['SCRIPTS']['RunONETWO']['run12.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/RunONETWO/run12.py <-:-:-> {}
+['MyInte']['SCRIPTS']['RunEFIT'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS']['RunEFIT']['baserunEFIT.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/RunEFIT/baserunEFIT.py <-:-:-> {}
+['MyInte']['SCRIPTS']['RunProfileGen'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS']['RunProfileGen']['baserunpg.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/RunProfileGen/baserunpg.py <-:-:-> {}
+['MyInte']['SCRIPTS']['RunProfileGen']['jobsub.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/RunProfileGen/jobsub.py <-:-:-> {}
+['MyInte']['SCRIPTS']['RunTGYRO'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS']['RunTGYRO']['baseruntgyro.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/RunTGYRO/baseruntgyro.py <-:-:-> {}
+['MyInte']['SCRIPTS']['RunTGYRO']['stab.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/RunTGYRO/stab.py <-:-:-> {}
+['MyInte']['SCRIPTS']['management'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS']['management']['flowmanage.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/management/flowmanage.py <-:-:-> {}
+['MyInte']['SCRIPTS']['GYRO'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS']['GYRO']['baserungyro.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/GYRO/baserungyro.py <-:-:-> {}
+['MyInte']['SCRIPTS']['GYRO']['omegaky.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/GYRO/omegaky.py <-:-:-> {}
+['MyInte']['SCRIPTS']['GYRO']['microstab.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/GYRO/microstab.py <-:-:-> {}
+['MyInte']['SCRIPTS']['GYRO']['plotspectrum.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/GYRO/plotspectrum.py <-:-:-> {}
+['MyInte']['SCRIPTS']['RunTGLF'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS']['RunTGLF']['baserunTGLF.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/RunTGLF/baserunTGLF.py <-:-:-> {}
+['MyInte']['SCRIPTS']['RunTGLF']['scanTGLF.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/RunTGLF/scanTGLF.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['readGlobdat.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/readGlobdat.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['cpltcyc.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/cpltcyc.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['lmtexch.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/lmtexch.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['loadexttgyrooutput.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/loadexttgyrooutput.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['loadextonetwooutput.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/loadextonetwooutput.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['mergeDT.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/mergeDT.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['distributeIonDen.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/distributeIonDen.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['denfrac.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/denfrac.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['pres.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/pres.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['rcdtgyroswitch.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/rcdtgyroswitch.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['rcvtgyroswitch.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/rcvtgyroswitch.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['checknb.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/checknb.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['linstudy.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/linstudy.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['EccdCore.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/EccdCore.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['rcdiniNe.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/rcdiniNe.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['scalefus.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/scalefus.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['recieveWpro.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/recieveWpro.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['getradiation.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/getradiation.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['updateradiation.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/updateradiation.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['distributeIonDen2.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/distributeIonDen2.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['maphybridq.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/maphybridq.py <-:-:-> {}
+['MyInte']['SCRIPTS']['assit']['addptcsrc.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/SCRIPTS/assit/addptcsrc.py <-:-:-> {}
+['MyInte']['PLOTS'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['PLOTS']['PlotProfileGen'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['PLOTS']['PlotProfileGen']['viewPG.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotProfileGen/viewPG.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGYRO'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGYRO']['profile.py'] <-:-:-> OMFITpythonPlot <-:-:-> ./MyInte/PLOTS/PlotTGYRO/profile.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGYRO']['power.py'] <-:-:-> OMFITpythonPlot <-:-:-> ./MyInte/PLOTS/PlotTGYRO/power.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGYRO']['flux.py'] <-:-:-> OMFITpythonPlot <-:-:-> ./MyInte/PLOTS/PlotTGYRO/flux.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGYRO']['flux_ep.py'] <-:-:-> OMFITpythonPlot <-:-:-> ./MyInte/PLOTS/PlotTGYRO/flux_ep.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGYRO']['flux_i.py'] <-:-:-> OMFITpythonPlot <-:-:-> ./MyInte/PLOTS/PlotTGYRO/flux_i.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGYRO']['flux_m.py'] <-:-:-> OMFITpythonPlot <-:-:-> ./MyInte/PLOTS/PlotTGYRO/flux_m.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGYRO']['stab.py'] <-:-:-> OMFITpythonPlot <-:-:-> ./MyInte/PLOTS/PlotTGYRO/stab.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGYRO']['stabCmp.py'] <-:-:-> OMFITpythonPlot <-:-:-> ./MyInte/PLOTS/PlotTGYRO/stabCmp.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotONETWO'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['PLOTS']['PlotONETWO']['view12.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotONETWO/view12.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotONETWO']['source.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotONETWO/source.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotONETWO']['cmpqpro.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotONETWO/cmpqpro.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGLF'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGLF']['lintglf.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotTGLF/lintglf.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotTGLF']['nontglf.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotTGLF/nontglf.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotAll'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['PLOTS']['PlotAll']['cmpnxt.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotAll/cmpnxt.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotAll']['avg0D.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotAll/avg0D.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotAll']['avgpro.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotAll/avgpro.py <-:-:-> {}
+['MyInte']['PLOTS']['PlotAll']['denpro.py'] <-:-:-> OMFITpythonTask <-:-:-> ./MyInte/PLOTS/PlotAll/denpro.py <-:-:-> {}
+['MyInte']['GUIS'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['IPS'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['MyInte']['SETTINGS'] <-:-:-> OMFITnamelist <-:-:-> ./MyInte/SettingsNamelist.txt <-:-:-> {}
+['MyInte']['SETTINGS']['SETUP']['workDir'] <-:-:-> OMFITexpression <-:-:-> _"OMFITworkDir(root,'')" <-:-:-> {}
+['MyInte']['SETTINGS']['EXPERIMENT']['shot'] <-:-:-> OMFITexpression <-:-:-> _"MainSettings['EXPERIMENT']['shot']" <-:-:-> {}
+['MyInte']['SETTINGS']['EXPERIMENT']['time'] <-:-:-> OMFITexpression <-:-:-> _"MainSettings['EXPERIMENT']['time']" <-:-:-> {}
+['MyInte']['SETTINGS']['EXPERIMENT']['device'] <-:-:-> OMFITexpression <-:-:-> _"MainSettings['EXPERIMENT']['device']" <-:-:-> {}
+['MyInte']['SETTINGS']['EXPERIMENT']['shots'] <-:-:-> OMFITexpression <-:-:-> _"MainSettings['EXPERIMENT']['shots']" <-:-:-> {}
+['MyInte']['SETTINGS']['EXPERIMENT']['times'] <-:-:-> OMFITexpression <-:-:-> _"MainSettings['EXPERIMENT']['times']" <-:-:-> {}
+['MyInte']['SETTINGS']['EXPERIMENT']['runid'] <-:-:-> OMFITexpression <-:-:-> _"MainSettings['EXPERIMENT']['runid']" <-:-:-> {}
+['MyInte']['SETTINGS']['EXPERIMENT']['run_tag'] <-:-:-> OMFITexpression <-:-:-> _"MainSettings['EXPERIMENT']['run_tag']" <-:-:-> {}
+['MyInte']['help'] <-:-:-> OMFITascii <-:-:-> ./MyInte/help.txt <-:-:-> {}

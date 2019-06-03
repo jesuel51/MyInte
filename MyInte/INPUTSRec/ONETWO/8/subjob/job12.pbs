@@ -1,0 +1,29 @@
+#!/bin/bash
+#PBS -q parallel11
+##PBS -q batch
+
+#PBS -N try12
+
+#PBS -l nodes=2:ppn=4
+#PBS -l walltime=1:00:00
+#PBS -j oe
+##PBS -o run.log
+#cd $PBS_O_WORKDIR
+
+
+
+#module load compiler/gcc/4.4
+#module load mpi/openmpi/1.6.3
+#module load netcdf/4.1.3
+#export RUNDIR=/scratch/home/xiangjian/Documents/project/gacode/tgyro/tools/input/treg01
+#export RUNDIR=/scratch/home/xiangjian/Documents/project/onetwo/onetwo_ex
+#export PBS_O_WORKDIR=$RUNDIR
+export PATH=$PATH:/home/users/jlchen/bin
+cd $PBS_O_WORKDIR
+
+#tgyro -e . -n 4
+#onetwov4.26_129_51_oldshenma
+#onetwo_129_201
+#onetwo_129_51
+#onetwov5.4_129_51_shenma
+onetwo_cfetr -np 4

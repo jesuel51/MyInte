@@ -1,0 +1,93 @@
+DIR TGLF1 4
+DIR TGLF2 4
+DIR TGLF3 4
+DIR TGLF4 4
+DIR TGLF5 4
+DIR TGLF6 4
+DIR TGLF7 4
+DIR TGLF8 4
+DIR TGLF9 4
+DIR TGLF10 4
+DIR TGLF11 4
+DIR TGLF12 4
+
+#-----------------------------------------------------
+# TGLF control
+TGYRO_TGLF_REVISION=3
+TGLF_Q_LOW_FLAG=0
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+# NEO control
+LOC_NEO_METHOD=2
+LOC_CHANG_HINTON_FLAG=0
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+# Profile control
+LOC_NE_FEEDBACK_FLAG=1
+LOC_TE_FEEDBACK_FLAG=1
+LOC_TI_FEEDBACK_FLAG=1
+LOC_ER_FEEDBACK_FLAG=0
+
+LOC_PFLUX_METHOD=3
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+# Physics control
+LOC_SCENARIO=2
+TGYRO_DT_METHOD=2
+TGYRO_ROTATION_FLAG=1
+TGYRO_USE_RHO=1
+LOC_N_ION=3
+
+# ion 1: D
+LOC_MA1 = 2
+LOC_Z = 1
+
+# ion 2: T
+LOC_MA2 = 3
+LOC_Z2 = 1
+
+# ion 3: He
+LOC_MA3=4.0
+LOC_Z3=2
+
+# ion 4: Ar
+LOC_MA4=40.0
+LOC_Z4=18
+
+TGYRO_RMAX=0.85
+#TGYRO_RMAX=0.8
+#TGYRO_RMIN=0.25
+TGYRO_RMIN=0.3
+LOC_ZEFF_FLAG=1
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+# Iteration control
+TGYRO_ITERATION_METHOD=2
+LOC_RESIDUAL_METHOD=3
+TGYRO_FIX_CONCENTRATION_FLAG=1
+TGYRO_QUASINEUTRAL_FLAG=1
+#TGYRO_QUASINEUTRAL_FLAG=0
+TGYRO_EXPWD_FLAG=0
+TGYRO_TGLF_DUMP_FLAG=1
+
+LOC_DX=0.03
+LOC_DX_MAX=0.5
+LOC_RELAX=2.0
+
+# TGYRO iterations
+TGYRO_RELAX_ITERATIONS=24
+LOC_LOCK_PROFILE_FLAG=0
+
+# Restart (0=new,1=restart)
+LOC_RESTART_FLAG=0
+#-----------------------------------------------------
+# linear stability parameters
+#TGYRO_STAB_NKY=8
+#TGYRO_STAB_KYMIN=0.2
+#TGYRO_STAB_DELTAKY=0.1
+#TGYRO_STAB_NSEARCH=15
+

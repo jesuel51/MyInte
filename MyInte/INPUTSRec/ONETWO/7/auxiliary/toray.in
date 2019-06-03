@@ -1,0 +1,8 @@
+   toray.in created by Onetwo                                              
+ &EDATA
+ IGAFIT =            1
+ NETCDFDAT=      .TRUE. 
+ nharm = 1
+ smax=1000
+ /
+

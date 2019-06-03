@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#PBS -q parallel11
+
+#PBS -N tglf
+
+#PBS -l nodes=2:ppn=2
+#PBS -l walltime=2:00:00
+#PBS -j oe
+##PBS -o run.log
+#cd $PBS_O_WORKDIR
+
+cd $PBS_O_WORKDIR
+export GACODE_ROOT=/project/gacode-new
+. $GACODE_ROOT/shared/bin/gacode_setup
+
+tglf -e . -n 4

@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -q parallel11
+##PBS -q batch
+#PBS -N try12
+#PBS -l nodes=2:ppn=4
+#PBS -l walltime=1:00:00
+#PBS -j oe
+
+export PATH=$PATH:/home/users/jlchen/bin
+cd $PBS_O_WORKDIR
+onetwo_cfetr -np 8

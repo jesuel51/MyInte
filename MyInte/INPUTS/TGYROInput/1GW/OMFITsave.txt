@@ -1,0 +1,20 @@
+['input.tgyro'] <-:-:-> OMFITgaCode <-:-:-> ./input.tgyro_p12 <-:-:-> {}
+['subjob'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['subjob']['jobtgyro.pbs'] <-:-:-> OMFITgaCode <-:-:-> ./subjob/jobtgyro.pbs_p12 <-:-:-> {}
+['subjob']['monitePBStgyro.sh'] <-:-:-> OMFITgaCode <-:-:-> ./subjob/monitePBStgyro.sh_p12 <-:-:-> {}
+['input.profiles'] <-:-:-> OMFITgaCode <-:-:-> ./input.profiles <-:-:-> {}
+['input.profiles.geo'] <-:-:-> OMFITgaCode <-:-:-> ./input.profiles.geo <-:-:-> {}
+['inputtglf'] <-:-:-> OMFITtree <-:-:->  <-:-:-> {}
+['inputtglf']['input.tglf1'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf1 <-:-:-> {}
+['inputtglf']['input.tglf2'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf2 <-:-:-> {}
+['inputtglf']['input.tglf3'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf3 <-:-:-> {}
+['inputtglf']['input.tglf4'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf4 <-:-:-> {}
+['inputtglf']['input.tglf5'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf5 <-:-:-> {}
+['inputtglf']['input.tglf6'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf6 <-:-:-> {}
+['inputtglf']['input.tglf7'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf7 <-:-:-> {}
+['inputtglf']['input.tglf8'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf8 <-:-:-> {}
+['inputtglf']['input.tglf9'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf9 <-:-:-> {}
+['inputtglf']['input.tglf10'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf10 <-:-:-> {}
+['inputtglf']['input.tglf11'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf11 <-:-:-> {}
+['inputtglf']['input.tglf12'] <-:-:-> OMFITnamelist <-:-:-> ./inputtglf/input.tglf12 <-:-:-> {}
+['input.profiles_hybrid'] <-:-:-> OMFITgacode <-:-:-> ./input.profiles_jl_june <-:-:-> {}

@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#pbsID=$(qsub /scratch/home/xiangjian/Documents/project/OMFIT-source/modules/ONETWO/FILES/job.pds)
+mkdir TGLF1
+touch TGLF1/input.tglf
+cat input.tglf1 > TGLF1/input.tglf
+mkdir TGLF2
+touch TGLF2/input.tglf
+cat input.tglf2 > TGLF2/input.tglf
+mkdir TGLF3
+touch TGLF3/input.tglf
+cat input.tglf3 > TGLF3/input.tglf
+mkdir TGLF4
+touch TGLF4/input.tglf
+cat input.tglf4 > TGLF4/input.tglf
+mkdir TGLF5
+touch TGLF5/input.tglf
+cat input.tglf5 > TGLF5/input.tglf
+mkdir TGLF6
+touch TGLF6/input.tglf
+cat input.tglf6 > TGLF6/input.tglf
+mkdir TGLF7
+touch TGLF7/input.tglf
+cat input.tglf7 > TGLF7/input.tglf
+mkdir TGLF8
+touch TGLF8/input.tglf
+cat input.tglf8 > TGLF8/input.tglf
+mkdir TGLF9
+touch TGLF9/input.tglf
+cat input.tglf9 > TGLF9/input.tglf
+mkdir TGLF10
+touch TGLF10/input.tglf
+cat input.tglf10 > TGLF10/input.tglf
+mkdir TGLF11
+touch TGLF11/input.tglf
+cat input.tglf11 > TGLF11/input.tglf
+mkdir TGLF12
+touch TGLF12/input.tglf
+cat input.tglf12 > TGLF12/input.tglf
+#pbsID=$(qsub jobtgyro.pbs)
+#echo "TGYRO_begins"
+##echo $pbsID
+#echo "The job $pbsID is submitted..."
+#tt=$(qstat | grep "$pbsID")
+#sleep 1
+#while [ ${#tt} -gt 0 ] ; do
+#  echo "The job $pbsID is still running..."
+#  sleep 30
+#  tt=$(qstat | grep "$pbsID")
+#done
+
+#echo "The job $pbsID is completed!"
+#echo "TGYRO completed!!"
